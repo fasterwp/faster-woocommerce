@@ -2,23 +2,28 @@ Solve wc-ajax=get_refreshed_fragments loading
 
 1. to Disable Cart Fragmentation on Front Page, add this code to functions.php
 
+```
 /** Disable Ajax Call from WooCommerce */
 add_action( 'wp_enqueue_scripts', 'dequeue_woocommerce_cart_fragments', 11); 
 function dequeue_woocommerce_cart_fragments() { if (is_front_page()) wp_dequeue_script('wc-cart-fragments'); }
+```
 
 2. navigate to “WooCommerce > Settings” menu and go to the “Display” section under “Products” tab. 
 Enable the checkbox “Redirect to the cart page after successful addition“.
 
 3. Disable Cart Fragmentation on Front Page and Posts
 
+```
 /** Disable Ajax Call from WooCommerce on front page and posts*/
 add_action( 'wp_enqueue_scripts', 'dequeue_woocommerce_cart_fragments', 11);
 function dequeue_woocommerce_cart_fragments() {
 if (is_front_page() || is_single() ) wp_dequeue_script('wc-cart-fragments');
 }
+```
 
 4. Disabling All WooCommerce Styles and Scripts Site Wide
 
+```
 /** Disable All WooCommerce  Styles and Scripts Except Shop Pages*/
 add_action( 'wp_enqueue_scripts', 'dequeue_woocommerce_styles_scripts', 99 );
 function dequeue_woocommerce_styles_scripts() {
@@ -52,5 +57,6 @@ wp_dequeue_script( 'jqueryui' );
 }
 }
 }
+```
 
 5. When you disable the scripts side wide, also disable “Enable Ajax add to cart buttons on archives” option available under the “Display” section of “WooCommerce > Settings” menu.
